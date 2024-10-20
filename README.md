@@ -1,6 +1,6 @@
 Questions answered with README.md tag: 
 ------------------------------------------------------------------------------------------------------------------------
-2.1
+## 2.1
 
 **GET /api/plants :** 
 NullPointerException – If plantDAO.getAll() returns null.
@@ -16,7 +16,7 @@ Same as the one before.
 IllegalArgumentException – If ctx.bodyAsClass(PlantDTO.class) gets invalid input or if the data is somehow incompatible.
 
 ------------------------------------------------------------------------------------------------------------------------
-3.4
+## 3.4
 
 The Stream API in Java is inspired by the functional programming paradigm. 
 It encourages stateless operations, and the use of higher-order functions (like `map`, `filter`, `reduce`),
