@@ -1,0 +1,21 @@
+### Get all plants
+GET {{URL}}
+
+### Get plant by id
+GET {{URL}}/5
+
+### Get plant by type
+GET {{URL}}/type/BUSH
+
+### Create plant
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "plantType": "RHODODENDRON",
+  "name": "Astrid",
+  "maxHeight": 40,
+  "price": 269.50
+}
+
+
