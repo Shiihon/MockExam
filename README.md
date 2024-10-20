@@ -2,17 +2,17 @@ Questions answered with README.md tag:
 ------------------------------------------------------------------------------------------------------------------------
 2.1
 
-GET /api/plants : 
+**GET /api/plants :** 
 NullPointerException – If plantDAO.getAll() returns null.
 
-GET /api/plants/{id} :
+**GET /api/plants/{id} :**
 NumberFormatException – If the ID in the path isn’t a valid Long, this one will slap you in the face when parsing(not handled).
 EntityNotFoundException - if the plant with the specified id isn't there (is handled in this project).
 
-GET /api/plants/type/{type} : 
+**GET /api/plants/type/{type} :** 
 Same as the one before.
 
-POST /api/plants :
+**POST /api/plants :**
 IllegalArgumentException – If ctx.bodyAsClass(PlantDTO.class) gets invalid input or if the data is somehow incompatible.
 
 ------------------------------------------------------------------------------------------------------------------------
