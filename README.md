@@ -14,6 +14,7 @@ Same as the one before.
 
 POST /api/plants :
 IllegalArgumentException – If ctx.bodyAsClass(PlantDTO.class) gets invalid input or if the data is somehow incompatible.
+
 ------------------------------------------------------------------------------------------------------------------------
 3.4
 
