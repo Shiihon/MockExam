@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.example.dtos.PlantDTO;
 import org.example.dtos.ResellerDTO;
 import org.example.entities.Plant;
+import org.example.entities.Reseller;
 import org.example.enums.PlantType;
 
 import java.util.Set;
@@ -85,12 +86,42 @@ public class PlantDAO implements IDAO<PlantDTO, PlantType> {
 
     public ResellerDTO addPlantToReseller(Long resellerId, Long plantId) { //use entity
         try (EntityManager em = emf.createEntityManager()) {
+            Reseller reseller = em.find(Reseller.class, resellerId);
 
+            if(reseller == null) {
+                throw new EntityNotFoundException("Reseller with id " + resellerId + " not found");
+            }
+            Plant plant = em.find(Plant.class, plantId);
+
+            if(plant == null) {
+                throw new EntityNotFoundException("Plant with id " + plantId + " not found");
+            }
+            em.getTransaction().begin();
+
+            reseller.getListOfPlants().add(plant);
+
+            em.merge(reseller);
+            em.getTransaction().commit();
+
+            return new ResellerDTO(reseller);
+
+        } catch (RollbackException e) {
+            throw new RollbackException(String.format("Could not add plant with id: %d to reseller with id: %d : %s", plantId, resellerId, e.getMessage()));
         }
-        return null;
+
     }
 
     public Set<PlantDTO> getPlantsByReseller(Long resellerId) { //use entity
-        return null;
+        try (EntityManager em = emf.createEntityManager()) {
+            Reseller reseller = em.find(Reseller.class, resellerId);
+            if(reseller == null) {
+                throw new EntityNotFoundException("Reseller with id " + resellerId + " not found");
+            }
+            Set<Plant> plants = reseller.getListOfPlants();
+
+            return plants.stream().map(PlantDTO::new).collect(Collectors.toSet());
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error fetching plants for reseller ID: " + resellerId + " - " + e.getMessage(), e);
+        }
     }
 }
