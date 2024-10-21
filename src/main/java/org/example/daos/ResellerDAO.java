@@ -1,9 +1,7 @@
 package org.example.daos;
 
 import jakarta.persistence.*;
-import org.example.dtos.PlantDTO;
 import org.example.dtos.ResellerDTO;
-import org.example.entities.Plant;
 import org.example.entities.Reseller;
 
 import java.util.Set;

@@ -2,8 +2,7 @@ package org.example.controllers;
 
 import io.javalin.http.Context;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.RollbackException;
-import org.example.daos.PlantDAOMock;
+import org.example.daos.PlantDAO;
 import org.example.dtos.PlantDTO;
 import org.example.enums.PlantType;
 import org.example.exceptions.ApiException;
@@ -11,9 +10,9 @@ import org.example.exceptions.ApiException;
 import java.util.Set;
 
 public class PlantController implements IPlantController {
-    private PlantDAOMock plantDAO;
+    private PlantDAO plantDAO;
 
-    public PlantController(PlantDAOMock plantDAO) {
+    public PlantController(PlantDAO plantDAO) {
         this.plantDAO = plantDAO;
     }
 

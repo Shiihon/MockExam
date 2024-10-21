@@ -3,17 +3,17 @@ package org.example.routes;
 import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
 import org.example.controllers.PlantController;
-import org.example.daos.PlantDAOMock;
+import org.example.daos.PlantDAO;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class PlantRoutes {
     private final PlantController plantController;
-    private static PlantDAOMock plantDAOMock;
+    private static PlantDAO plantDAO;
 
     public PlantRoutes(EntityManagerFactory emf) {
-        plantDAOMock = new PlantDAOMock();
-        plantController = new PlantController(plantDAOMock);
+        plantDAO = new PlantDAO(emf);
+        plantController = new PlantController(plantDAO);
     }
 
     public EndpointGroup getPlantRoutes() {

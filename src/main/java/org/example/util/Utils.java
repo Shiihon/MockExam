@@ -3,7 +3,9 @@ package org.example.util;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.dtos.Message;
 import org.example.exceptions.ApiException;
 
 import java.io.IOException;
@@ -36,6 +38,7 @@ public class Utils {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // Ignore unknown properties in JSON
         objectMapper.registerModule(new JavaTimeModule()); // Serialize and deserialize java.time objects
         objectMapper.writer(new DefaultPrettyPrinter());
+
         return objectMapper;
     }
 
